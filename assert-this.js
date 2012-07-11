@@ -27,9 +27,8 @@ var Assert = function () {
             document !== undefined) {
 
         console.log = function (msg) {
-            var body = document.getElementsByTagName("body");
-            // FIXME: insert before closing body tag 
-            body.append(msg);
+            // If console.log doesn't exist just throw an error.
+            throw msg;
         };
     }
     /*jslint undef:false */
