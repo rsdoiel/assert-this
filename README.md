@@ -3,6 +3,8 @@ assert-this
 
 A simple assertion library for testing JavaScript code in the browser.  It is inspired by Node's assert module.
 
+## Using assert-this
+
 Building JavaScript tests to run in the browser requires three files - an HTML page to invoke your 
 JavaScript library; your JavaScript tests;  and your library you're testing. 
 
