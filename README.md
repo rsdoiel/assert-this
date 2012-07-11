@@ -19,6 +19,7 @@ The test script is named *test_mylib.js*.
 
 All the HTML wrapper page needs to do is load *assert-this.js*, your test JavaScript code and your library.
 
+```html
     <!DOCTYPE html>
     <html>
       <head>
@@ -35,6 +36,7 @@ All the HTML wrapper page needs to do is load *assert-this.js*, your test JavaSc
         <h2>Loading complete</h2>
       </body>
     </html>
+```
 
 This will load your JS and if console.log is available write the output of the tests 
 to the JavaScript console (e.g. you'reusing Chrome or Firefox) or append to the page 
@@ -45,6 +47,7 @@ if console is not available.
 This is what *test_mylib.js* would look like. For our demo mylib.js has one function. 
 This is an example of testing it.
 
+```JavaScript
     // test_mylib.js - This is the test to demostrate assert-this.js usage.
     // This test is assumed to be run from an HTML page in the browser and
     // that assert-this.js has already been loaded as well as the library
@@ -52,12 +55,13 @@ This is an example of testing it.
       
     // Here's a simple test for myAdd function from mylib.js
     assert.equal(myAdd(1,1), 2, "One plus one should equal two");
-
+```
 
 ## the demo library
 
 *mylib.js* a demo function to test.
 
+```JavaScript
     // mylib.js - This is a demo library to show how assert-this.js
     // might be used.
     
@@ -65,6 +69,7 @@ This is an example of testing it.
     var myAdd = function (a, b) {
       return a + b;
     };
+```
 
 ## Running your tests
 
