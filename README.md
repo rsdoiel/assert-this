@@ -1,7 +1,5 @@
 assert-this
 ===========
-revision 0.0.1
---------------
 
 A simple assertion library for testing JavaScript code in the browser.  It is inspired by Node's assert module.
 
