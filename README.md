@@ -1,7 +1,9 @@
 assert-this
 ===========
+revision 0.0.1
+--------------
 
-NodeJS alike assert for writing simple tests in the browser.
+A simple assertion library for testing JavaScript code in the browser.  It is inspired by Node's assert module.
 
 Building JavaScript tests to run in the browser requires three files - an HTML page to invoke your 
 JavaScript library; your JavaScript tests;  and your library you're testing. 
