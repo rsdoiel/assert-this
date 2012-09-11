@@ -3,10 +3,10 @@
 // @author: R. S. Doiel, <rsdoiel@gmail.com>
 // copyright (c) 2011 all rights reserved
 //
-// Released under New the BSD License.
+// Released under the Simplified BSD License.
 // See: http://opensource.org/licenses/bsd-license.php
 //
-// revision: 0.0.0
+// revision: 0.0.2
 //
 /*jslint browser: true, sloppy: false, indent: 4, maxlen: 80 */
 /*properties
@@ -17,25 +17,22 @@
    console, document
 */
 
+// Deal with possibly missing console.error()
+/*jslint undef:true */
+if (console === undefined) {
+	var console = {
+		log: print,
+		error: print		
+	};
+}
+/*jslint undef:false */
+
 var Assert = function () {
     "use strict";
 
-    // Deal with possibly missing console.log()
-    /*jslint undef:true */
-    if ((console === undefined ||
-            console.log === undefined) &&
-            document !== undefined) {
-
-        console.log = function (msg) {
-            // If console.log doesn't exist just throw an error.
-            throw msg;
-        };
-    }
-    /*jslint undef:false */
-
     // Make an assert fail
     this.fail = function (msg) {
-        console.log(msg);
+		console.error(msg);
         return false;
     };
 
@@ -44,7 +41,7 @@ var Assert = function () {
         if (expr) {
             return true;
         }
-        console.log(msg);
+		console.error(msg);
         return false;
     };
 
@@ -55,7 +52,7 @@ var Assert = function () {
             return true;
         }
         /*jslint eqeq: false */
-        console.log(msg);
+        console.error(msg);
         return false;
     };
 
@@ -66,7 +63,7 @@ var Assert = function () {
             return true;
         }
         /*jslint eqeq: false */
-        console.log(msg);
+        console.error(msg);
         return false;
     };
 
@@ -75,7 +72,7 @@ var Assert = function () {
         if (expr1 === expr2) {
             return true;
         }
-        console.log(msg);
+        console.error(msg);
         return false;
     };
 
@@ -84,7 +81,7 @@ var Assert = function () {
         if (expr1 !== expr2) {
             return true;
         }
-        console.log(msg);
+        console.error(msg);
         return false;
     };
 }, assert_this = new Assert();

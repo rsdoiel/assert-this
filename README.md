@@ -1,9 +1,25 @@
 assert-this
 ===========
 
-A simple assertion library for testing JavaScript code in the browser.  It is inspired by Node's assert module.
+A simple assertion library for testing JavaScript code in the browser or 
+MongoDB 2.2 shell.  It is inspired by Node's assert module.
 
 # Using assert-this
+
+## with MongoDB Shell
+
+Building JavaScript tests to run in the MongoDB shell requires loading
+*assert-this.js* as well as the test of your scripts.
+
+```javascript
+	//
+	// Run this assertion tests in MongoDB's shell
+	//
+	load("./assert-this.js");
+	load("./test_assert-this.js");
+```
+
+## with web browser
 
 Building JavaScript tests to run in the browser requires three files - an HTML page to invoke your 
 JavaScript library; your JavaScript tests;  and your library you're testing. 
