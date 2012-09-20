@@ -36,22 +36,22 @@ The test script is named *test_mylib.js*.
 All the HTML wrapper page needs to do is load *assert-this.js*, your test JavaScript code and your library.
 
 ```html
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Test mylib.js</title>
-      </head>
-      <body>
-        <h1>Test mylib.js</h1>
-        <h2>Loading assert-this</h2>
-        <script src="assert-this"></script>
-        <h2>Loading test_mylib.js</h2>
-        <script src="test_mylib.js"></script>
-        <h2>Loading mylib.js</h2>
-        <script src="mylib.js"></script>
-        <h2>Loading complete</h2>
-      </body>
-    </html>
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Test mylib.js</title>
+		</head>
+		<body>
+			<h1>Test mylib.js</h1>
+			<h2>Loading assert-this</h2>
+			<script src="assert-this"></script>
+			<h2>Loading test_mylib.js</h2>
+			<script src="test_mylib.js"></script>
+			<h2>Loading mylib.js</h2>
+			<script src="mylib.js"></script>
+			<h2>Loading complete</h2>
+		</body>
+	</html>
 ```
 
 This will load your JS and if console.log is available write the output of the tests 
@@ -64,13 +64,13 @@ This is what *test_mylib.js* would look like. For our demo mylib.js has one func
 This is an example of testing it.
 
 ```JavaScript
-    // test_mylib.js - This is the test to demostrate assert-this.js usage.
-    // This test is assumed to be run from an HTML page in the browser and
-    // that assert-this.js has already been loaded as well as the library
-    // we'll be testing.
-      
-    // Here's a simple test for myAdd function from mylib.js
-    assert.equal(myAdd(1,1), 2, "One plus one should equal two");
+	// test_mylib.js - This is the test to demostrate assert-this.js usage.
+	// This test is assumed to be run from an HTML page in the browser and
+	// that assert-this.js has already been loaded as well as the library
+	// we'll be testing.
+
+	// Here's a simple test for myAdd function from mylib.js
+	assert.equal(myAdd(1,1), 2, "One plus one should equal two");
 ```
 
 ## the demo library
@@ -78,13 +78,13 @@ This is an example of testing it.
 *mylib.js* a demo function to test.
 
 ```JavaScript
-    // mylib.js - This is a demo library to show how assert-this.js
-    // might be used.
-    
-    // Add two numbers
-    var myAdd = function (a, b) {
-      return a + b;
-    };
+	// mylib.js - This is a demo library to show how assert-this.js
+	// might be used.
+	
+	// Add two numbers
+	var myAdd = function (a, b) {
+		return a + b;
+	};
 ```
 
 ## Running your tests
