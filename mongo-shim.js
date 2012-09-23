@@ -10,6 +10,58 @@
 /*jslint devel: true, node: true, maxerr: 50, indent: 4, vars: true, sloppy: true */
 /*global print, load, pwd, assert, harness */
 (function (global) {
+	var items;
+
+	// Set a default search location for Mongo modules
+	if (global.MONGO_LIBRARY_PATH === undefined) {
+		items = ls();
+		if (items.indexOf("./lib") >= 0) {
+			global.MONGO_LIBRARY_PATH = items[items.indexOf("./lib")];
+		} else {
+			global.MONGO_LIBRARY_PATH = "";
+		}
+	}
+
+
+    // Shim path module
+    var Path = function () {
+        return {
+            delimiter : '/',
+            join: function () {
+                var parts = [], i, cur = 0, end_cut = 0,
+					resolving_path, reduced_path;
+                
+                for (i = 0; i < arguments.length; i += 1) {
+                    if (typeof arguments[i] !== "string") {
+                        throw "path parts must be a string." + arguments[i];
+                    }
+                    if (arguments[i].trim() !== "") {
+                    	parts.push(arguments[i].trim());
+                    }
+                }
+                
+                resolving_path = parts.join(this.delimiter);
+				cur = resolving_path.indexOf("../");
+				while (cur >= 0) {
+					reduced_path = resolving_path.substr(0, cur);
+					end_cut = cur + 3;
+					resolving_path = reduced_path.concat(resolving_path.substr(end_cut));
+					cur = resolving_path.indexOf("../");
+				}
+				return resolving_path.replace(/\/.\//g, '/');
+            },
+            basename: function (p) {
+				var basename;
+                if (p.lastIndexOf(this.delimiter) >= 0) {
+                    basename = p.substr(p.lastIndexOf(this.delimiter) + 1);
+                } else {
+					basename = p;
+				}
+                return basename;
+            }
+        };
+    }, path = new Path();
+	
     // Shim console.log(), console.error()
     var Console = function () {
         return {
@@ -42,43 +94,6 @@
         };
     }, console = new Console();
 
-    // Shim path module
-    var Path = function () {
-        return {
-            delimiter : '/',
-            join: function () {
-                var parts = [], i, cur = 0, end_cut = 0,
-					resolving_path, reduced_path;
-                
-                for (i = 0; i < arguments.length; i += 1) {
-                    if (typeof arguments[i] !== "string") {
-                        throw "path parts must be a string." + arguments[i];
-                    }
-                    parts.push(arguments[i]);
-                }
-                
-                resolving_path = parts.join(this.delimiter);
-				cur = resolving_path.indexOf("../");
-				while (cur >= 0) {
-					reduced_path = resolving_path.substr(0, cur);
-					end_cut = cur + 3;
-					resolving_path = reduced_path.concat(resolving_path.substr(end_cut));
-					cur = resolving_path.indexOf("../");
-				}
-				return resolving_path;
-            },
-            basename: function (p) {
-				var basename;
-                if (p.lastIndexOf(this.delimiter) >= 0) {
-                    basename = p.substr(p.lastIndexOf(this.delimiter) + 1);
-                } else {
-					basename = p;
-				}
-                return basename;
-            }
-        };
-    }, path = new Path();
-
 	var Require = function () {
 		return function (module) {
 			var working_directory = pwd(),
@@ -92,11 +107,11 @@
 			case "path":
 				return new Path();
 			case "assert":
-				load("assert-this.js");
+				load(path.join(global.MONGO_LIBRARY_PATH, "assert-this.js"));
 				return assert;
 			}
 			this.exports = exports;
-			load(load_path);
+			load(path.join(global.MONGO_LIBRARY_PATH, load_path));
 			return exports;
 		};
 	};
