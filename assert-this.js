@@ -6,7 +6,6 @@
 // Released under the Simplified BSD License.
 // See: http://opensource.org/licenses/bsd-license.php
 //
-// revision: 0.0.3
 //
 /*jslint browser: true, sloppy: false, indent: 4, maxlen: 80 */
 /*properties
