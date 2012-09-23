@@ -15,7 +15,8 @@ Building JavaScript tests to run in the MongoDB shell requires loading
 	//
 	// Run this assertion tests in MongoDB's shell
 	//
-	load("./assert-this.js");
+	load("./mongo-shim.js");
+	assert = require("assert");
 	load("./test_assert-this.js");
 ```
 
