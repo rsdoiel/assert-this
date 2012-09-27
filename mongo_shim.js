@@ -92,7 +92,7 @@
 			case "path":
 				return new Path();
 			case "assert":
-				load("assert-this.js");
+				load("assert_this.js");
 				return assert;
 			}
 			this.exports = exports;

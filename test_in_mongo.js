@@ -9,7 +9,7 @@
 //
 
 // Load the Shim to run assert-this and harness
-load("mongo-shim.js");
+load("mongo_shim.js");
 path = require("path");
 assert = require("assert");
 harness = require("harness");
@@ -27,7 +27,7 @@ harness.push({callback: function () {
 	}
 	/*jslint undef: false */
 	
-	console.log("Starting test for assert-this.js...");
+	console.log("Starting test for assert_this.js...");
 	
 	if (assert.fail("testing assert.fail(msg)") === false) {
 		console.log("assert.fail(msg) OK.");

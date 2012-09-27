@@ -1,4 +1,4 @@
-// assert-this.js - Add basic node assert like methods for use in the browser.
+// assert_this.js - Add basic node assert like methods for use in the browser.
 //
 // @author: R. S. Doiel, <rsdoiel@gmail.com>
 // copyright (c) 2011 all rights reserved
