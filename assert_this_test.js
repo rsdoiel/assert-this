@@ -1,5 +1,5 @@
-// test_assert-this.js - test if assert-this will work in a browser.
-// depends on test_assert-this.html.
+// assert_this_test.js - test if assert_this.js will work in a browser.
+// depends on assert_this_test.html.
 //
 // @author: R. S. Doiel, <rsdoiel@gmail.com>
 // copyright (c) 2011 all rights reserved
@@ -24,7 +24,7 @@
 	}
 	/*jslint undef: false */
 	
-	console.log("Starting test for assert-this.js...");
+	console.log("Starting test for assert_this.js...");
 	
 	if (assert.fail("testing assert.fail(msg)") === false) {
 		console.log("assert.fail(msg) OK.");

@@ -1,11 +1,11 @@
 {
-	"name" : "assert-this",
-	"version" : "0.0.4",
+	"name" : "assert_this",
+	"version" : "0.0.5",
 	"description" : "An assertion based test library for the Mongo Shell and web browser.",
-	"main" : "./assert-this.js",
+	"main" : "./assert_this.js",
 	"repository" : {
 		"type" : "git", 
-		"url" : "https://github.com/rsdoiel/assert-this.git"
+		"url" : "https://github.com/rsdoiel/assert_this.git"
 	},
 	"author" : {
 		"name" : "R. S. Doiel", 
@@ -23,6 +23,6 @@
 		"test" : "mongo test_in_mongo.js"
 	},
 	"bugs": {
-		"url": "http://github.com/rsdoiel/assert-this/issues"
+		"url": "http://github.com/rsdoiel/assert_this/issues"
    	}
 }
