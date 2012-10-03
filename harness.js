@@ -10,7 +10,7 @@
 //
 //
 /*jslint devel: true, node: true, maxerr: 50, indent: 4,  vars: true, sloppy: true */
-(function (global, undefined) {
+var Harness = function () {
 	var test_groups = [],
 		running_tests = [],
 		complete_called = false;
@@ -78,17 +78,15 @@
 		}, test_delay);
 	};
 	
-	global.harness = {};
-	global.harness.push = push;
-	global.harness.completed = completed;
-	global.harness.RunIt = RunIt;
+	this.push = push;
+	this.completed = completed;
+	this.RunIt = RunIt;
 
 	try {
 		exports.push = push;
 		exports.completed = completed;
 		exports.RunIt = RunIt;
-		exports.RunInMongoShell = RunInMongoShell;
 	} catch (err) {
 		console.log("Running in browser.");
 	}
-}(this));
+}, harness = new Harness();

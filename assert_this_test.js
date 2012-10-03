@@ -145,8 +145,24 @@
 	
 	console.log("Success!");
 
-	console.log("Setting up harness.js tests...");	
+	console.log("Setting up harness.js tests...");
+	/*
+	if (harness === undefined) {
+		throw "Problem loading harness.js";
+	}
+	if (harness.push === undefined) {
+		throw "Promblem exporting harness.push()";
+	}
+	if (harness.completed === undefined) {
+		throw "Problem exporting harness.completed()";
+	}
+	if (harness.RunIt === undefined) {
+		throw "Problem exporting harness.RunIt()";
+	}
+	*/
 	harness.push({callback: function () {
+		assert.ok(true, "This is OK");
+		harness.completed("Testing harness");
 	}, label: "Testing harness"});
 	console.log("Calling harness.RunIt()");
 	harness.RunIt("harness.js", 10, true);
