@@ -12,7 +12,7 @@
 load("mongo_shim.js");
 path = require("path");
 assert = require("assert");
-harness = require("harness");
+harness = require("./harness");
 
 harness.push({callback: function () {
 	/*jslint undef: true */
@@ -146,4 +146,4 @@ harness.push({callback: function () {
 	}
 }, label: "testing assert-this"});
 
-harness.RunInMongoShell("test_in_mongo.js");
+harness.RunIt("test_in_mongo.js");

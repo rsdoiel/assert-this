@@ -1,6 +1,6 @@
 {
 	"name" : "assert_this",
-	"version" : "0.0.5",
+	"version" : "0.0.6",
 	"description" : "An assertion based test library for the Mongo Shell and web browser.",
 	"main" : "./assert_this.js",
 	"repository" : {

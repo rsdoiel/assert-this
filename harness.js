@@ -10,10 +10,12 @@
 //
 //
 /*jslint devel: true, node: true, maxerr: 50, indent: 4,  vars: true, sloppy: true */
-var Harness = function () {
+var Harness = function (global) {
 	var test_groups = [],
 		running_tests = [],
-		complete_called = false;
+		complete_called = false,
+		setInterval = global.setInterval,
+		clearInterval = global.clearInterval;
 	
 	// Push a test batch into harness
 	var push = function (test) {
@@ -40,15 +42,7 @@ var Harness = function () {
 	var RunIt = function (module_name, test_delay) {
 		var int_id;
 	
-		if (module_name === undefined) {
-			module_name = "Untitled module tests";
-		}
-		if (test_delay === undefined) {
-			test_delay = 1000;
-		}
-	
-		console.log("Starting [" + module_name.trim() + "] ...");
-		int_id = setInterval(function () {
+		var run = function () {
 			var group_test = test_groups.shift();
 			if (group_test &&
 					typeof group_test.callback === "function" &&
@@ -71,13 +65,30 @@ var Harness = function () {
 				} else {
 					console.log(module_name.trim() + " Success!");
 				}
-				clearInterval(int_id);
+				if (clearInterval !== undefined) {
+					clearInterval(int_id);
+				}
 			} else {
 				throw module_name.trim() + " Failed!";
 			}
-		}, test_delay);
-	};
+		};
+		
+		if (module_name === undefined) {
+			module_name = "Untitled module tests";
+		}
+		if (test_delay === undefined) {
+			test_delay = 1000;
+		}
 	
+		console.log("Starting [" + module_name.trim() + "] ...");
+		if (setInterval === undefined) {
+			console.log("Running without setInterval()");
+			run();
+		} else {
+			int_id = setInterval(run, test_delay);
+		}
+	};
+
 	this.push = push;
 	this.completed = completed;
 	this.RunIt = RunIt;
@@ -89,4 +100,4 @@ var Harness = function () {
 	} catch (err) {
 		console.log("Running in browser.");
 	}
-}, harness = new Harness();
+}, harness = new Harness(this);
