@@ -144,4 +144,10 @@
 	}
 	
 	console.log("Success!");
+
+	console.log("Setting up harness.js tests...");	
+	harness.push({callback: function () {
+	}, label: "Testing harness"});
+	console.log("Calling harness.RunIt()");
+	harness.RunIt("harness.js", 10, true);
 }());
